@@ -12,8 +12,6 @@ import kotlin.collections.mutableMapOf
 
 class MoexResolver: StockResolver {
 	
-	private val client = HttpClient(CIO)
-
 	private fun parseStockList(json: String): List<String> {
 		val stocks: MutableList<String> = mutableListOf<String>()
 		val mapper = jacksonObjectMapper()
@@ -47,13 +45,19 @@ class MoexResolver: StockResolver {
 	}
 
 	override suspend fun getStocks(): List<String> {
-		val response: HttpResponse = client.get("https://iss.moex.com/iss/securities.json")
+		val response: HttpResponse
 
-		return parseStockList(response.bodyAsText())
-	}
+		HttpClient(CIO).use {
+			response = it.get("https://iss.moex.com/iss/securities.json")
+		}
+
+		return parseStockList(response.bodyAsText()) }
 
 	override suspend fun getCurrentPrice(secId: String): Double {
-		val response: HttpResponse = client.get("https://iss.moex.com/iss/statistics/engines/stock/currentprices.json")
+		val response: HttpResponse
+		HttpClient(CIO).use {
+			response = it.get("https://iss.moex.com/iss/statistics/engines/stock/currentprices.json")
+		}
 
 		val pricesMap: Map<String, Double> = parseStockPrices(response.bodyAsText())
 
