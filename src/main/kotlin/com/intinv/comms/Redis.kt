@@ -1,4 +1,4 @@
-package com.example.comms;
+package com.intinv.comms;
 
 import redis.clients.jedis.JedisPool
 import redis.clients.jedis.JedisPubSub

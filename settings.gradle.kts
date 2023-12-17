@@ -1,1 +1,1 @@
-rootProject.name = "com.example.stock_service"
+rootProject.name = "com.intinv.stock_service"

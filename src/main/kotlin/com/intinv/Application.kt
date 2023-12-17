@@ -1,13 +1,13 @@
-package com.example
+package com.intinv
 
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 
-import com.example.stocks.*;
-import com.example.comms.Redis
-import com.example.comms.Dispatcher
+import com.intinv.stocks.*;
+import com.intinv.comms.Redis
+import com.intinv.comms.Dispatcher
 import kotlinx.coroutines.channels.Channel
 
 suspend fun main() {
