@@ -12,7 +12,7 @@ class Redis(
 	val port: Int = 6379
 ) {
 
-	val redisChannel = "api.stocks"
+	val redisChannel = "intinv.securities"
 
 	val pool = JedisPool(hostname, port)
 	val jedisPubSub = object : JedisPubSub() {
